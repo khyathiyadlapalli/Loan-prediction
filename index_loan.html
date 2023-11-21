@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Approval Prediction</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family/Arimo" rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+        .login {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            margin: 0;
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .btn {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #286090;
+        }
+        .prediction-text {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h1>Loan Approval Prediction</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <label for="gender">Gender:</label>
+            <select name="gender" id="gender" required="required">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <label for="marital_status">Married:</label>
+            <select name="marital_status" id="marital_status" required="required">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <label for="no_of_dependents">Dependents:</label>
+            <select name="no_of_dependents" id="no_of_dependents" required="required">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3+">3+</option>
+            </select>
+            <label for="education">Education:</label>
+            <select name="education" required="required">
+                <option value="1">Graduate</option>
+                <option value="0">Not Graduate</option>
+            </select>
+            <label for="loan_amount_term">Loan Amount Term:</label>
+            <input type="text" name="loan_amount_term" placeholder="Loan Amount Term" required="required" />
+            <label for="credit_history">Credit History:</label>
+            <select name="credit_history" id="credit_history" required="required">
+                <option value="1.0">1.0</option>
+                <option value="0.0">0.0</option>
+            </select>
+            <input type="text" name="loan_amount_log" placeholder="Loan Amount Log" required="required" />
+            <input type="text" name="total_income" placeholder="Total Income" required="required" />
+            <button type="submit" class="btn">Predict Loan Status</button>
+        </form>
+        <div class="prediction-text">
+            {{ prediction_text }}
+        </div>
+    </div>
+</body>
+</html>
